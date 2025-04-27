@@ -105,7 +105,7 @@ module Protobuf
             search_relation = search_relation.__send__(scope_name, *search_values)
           end
 
-          return search_relation
+          search_relation
         end
 
         # :noapi:
