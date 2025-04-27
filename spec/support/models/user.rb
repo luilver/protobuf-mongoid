@@ -9,7 +9,7 @@ class User
 
   accepts_nested_attributes_for :photos
 
-  scope :by_guid, lambda { |*guids| where(:guid => guids) }
+  scope :by_guid, lambda { |*guids| where(guid: Array(guids).flatten.first) }
   scope :by_email, lambda { |*emails| where(:email => emails) }
 
   protobuf_fields :except => :photos
