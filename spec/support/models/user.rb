@@ -20,12 +20,20 @@ class User
   attribute_from_proto :nullify, lambda { |proto| proto.nullify! }
   attribute_from_proto :photos, lambda { |proto| proto.photos.map { |photo| Photo.attributes_from_proto(photo) } }
   attribute_from_proto :name, lambda { |proto| proto.name! }
-  attribute_from_proto :first_name, lambda { |proto| proto.name.split(" ").first }
-  attribute_from_proto :last_name, lambda { |proto| proto.name.split(" ").last }
+  attribute_from_proto :first_name, :extract_first_name
+  attribute_from_proto :last_name, :extract_last_name
   attribute_from_proto :password, lambda { |proto| proto.password! }
 
   field_from_document :email_domain, lambda { |document| document.email.split("@").last }
   field_from_document :password, :password_transformer
+
+  def self.extract_first_name(user)
+    user.name.split(" ").first
+  end
+
+  def self.extract_last_name(user)
+    user.name.split(" ").last
+  end
 
   def self.password_transformer(user)
     # Simple way to test field transformers that call methods
