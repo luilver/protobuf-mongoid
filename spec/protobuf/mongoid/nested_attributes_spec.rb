@@ -3,9 +3,9 @@
 require 'spec_helper'
 
 describe Protobuf::Mongoid::NestedAttributes do
-  let(:user_message) {
+  let(:user_message) do
     UserMessage.new(name: 'foo bar', email: 'foo@test.co', photos: [{ url: 'https://test.co/test.png' }])
-  }
+  end
 
   describe '._filter_attribute_fields', aggregate_failures: true do
     it 'includes nested attributes' do
