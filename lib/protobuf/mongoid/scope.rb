@@ -128,7 +128,9 @@ module Protobuf
         #
         # Examples:
         #
-        #   class User < Mongoid::Base
+        #   class User
+        #     include Mongoid::Base
+        #
         #     scope :by_guid, lambda { |*guids| where(:guid => guids) }
         #     scope :by_external_guid, lambda { |*external_guids|
         #       where(:external_guid => exteranl_guids)
