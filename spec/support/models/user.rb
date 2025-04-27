@@ -14,14 +14,14 @@ class User
 
   protobuf_fields :except => :photos
 
-  attribute_from_proto :guid, :guid!
+  attribute_from_proto :guid, lambda { |proto| proto.guid! }
   attribute_from_proto :email, lambda { |proto| proto.email! }
   attribute_from_proto :email_domain, lambda { |proto| proto.email.split("@").last }
   attribute_from_proto :nullify, lambda { |proto| proto.nullify! }
   attribute_from_proto :photos, lambda { |proto| proto.photos.map { |photo| Photo.attributes_from_proto(photo) } }
   attribute_from_proto :name, lambda { |proto| proto.name! }
-  attribute_from_proto :first_name, :extract_first_name
-  attribute_from_proto :last_name, :extract_last_name
+  attribute_from_proto :first_name, lambda { |proto| proto.name.split(" ").first }
+  attribute_from_proto :last_name, lambda { |proto| proto.name.split(" ").last }
   attribute_from_proto :password, lambda { |proto| proto.password! }
 
   field_from_document :email_domain, lambda { |document| document.email.split("@").last }
