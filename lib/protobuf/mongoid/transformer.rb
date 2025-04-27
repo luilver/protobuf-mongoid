@@ -13,9 +13,8 @@ module Protobuf
 
       def call(proto)
         return unless proto
-        return unless proto.respond_to?(:call)
 
-        callable.call
+        callable.call(proto)
       end
 
       def nullify?(proto)
