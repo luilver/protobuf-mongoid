@@ -9,7 +9,7 @@ Gem::Specification.new do |spec|
   spec.email         = ['luilver@gmail.com']
   spec.summary       = 'A gem to integrate Protocol Buffers with Mongoid.'
   spec.description   = 'This gem provides functionality to serialize and deserialize Mongoid documents using Protocol Buffers.'
-  spec.homepage      = 'https://github.com/yourusername/protobuf-mongoid'
+  spec.homepage      = 'https://github.com/luilver/protobuf-mongoid'
   spec.license       = 'MIT'
 
   spec.files         = Dir['lib/**/*', 'README.md', 'LICENSE.txt']
