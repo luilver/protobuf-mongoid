@@ -13,7 +13,8 @@ describe Protobuf::Mongoid::NestedAttributes do
   end
 
   # TODO: This test is not working as expected. It should be fixed.
-  # Unsure the reason why the guid! method is not presennt in the User class.
+  # NoMethodError:
+  #     undefined method `with_indifferent_access' for "https://test.co/test.png":String
   describe ".new" do
     context "when a model accepts nested attributes" do
       xit "transforms nested attributes", :aggregate_failures => true do
