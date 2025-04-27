@@ -60,11 +60,9 @@ module Protobuf
           searchable_field_parsers[field] = options[:parser] if options[:parser]
         end
 
-        # Get an ARel relation to build off of. If we're in Rails 4 we need to
-        # use `all` instead of `scoped`.
         # :noapi:
         def model_scope
-          ::Mongoid::VERSION::MAJOR >= 4 ? all : scoped
+          all
         end
 
         # :noapi:
