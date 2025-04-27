@@ -158,10 +158,11 @@ module Protobuf
             hash
           end
 
-          return attributes unless proto.field?(:nullify) && proto.nullify.is_a?(Array)
-
-          proto.nullify.each do |attribute_name|
-            attributes[attribute_name.to_sym] = nil if attribute_names.include?(attribute_name.to_s)
+          # Ensure attributes specified in the `nullify` field are set to nil
+          if proto.field?(:nullify) && proto.nullify.is_a?(Array)
+            proto.nullify.each do |attribute_name|
+              attributes[attribute_name.to_sym] = nil if attribute_fields.key?(attribute_name.to_sym)
+            end
           end
 
           attributes
