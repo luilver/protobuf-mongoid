@@ -27,7 +27,7 @@ Gem::Specification.new do |spec|
   ##
   # Ruby version requirement
   #
-  spec.required_ruby_version = '>= 3.2.2'
+  spec.required_ruby_version = '>= 3.1.4'
 
   ##
   # Development dependencies
