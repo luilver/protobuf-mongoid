@@ -102,7 +102,8 @@ module Protobuf
             next unless proto.respond_to_and_has_and_present?(field)
 
             search_values = parse_search_values(proto, field)
-            search_relation = search_relation.__send__(scope_name, *search_values)
+            search_relation = search_relation.__send__(scope_name, *search_values)            
+            search_relation.selector[field] = { "$in" => search_values } if search_values.class == Array
           end
 
           search_relation
