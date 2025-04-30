@@ -6,6 +6,9 @@ module Protobuf
     module Serialization
       extend ActiveSupport::Concern
 
+      OK = 200
+      BAD_REQUEST = 400
+
       included do
         class << self
           attr_writer :_protobuf_field_symbol_transformers,
@@ -241,7 +244,40 @@ module Protobuf
           hash[field] = field_object.call(self)
         end
 
+        if hash.include?(:changed_attribute_names)
+          hash[:changed_attribute_names] = changed_fields_from_document
+        end
+
+        if hash.include?(:errors)
+          hash[:errors] = errors_for_protobuf
+        end
+
+        if hash.include?(:status_code)
+          hash[:status_code] = status_code_for_protobuf
+        end
+
         hash
+      end
+
+      def changed_fields_from_document
+        changed_attribute_names = previous_changes.keys
+
+        changed_attribute_names
+      end
+
+      def status_code_for_protobuf
+        errors.empty? ? OK : BAD_REQUEST
+      end
+
+      def errors_for_protobuf
+        return [] if errors.empty?
+
+        errors.messages.map do |field, error_messages|
+          {
+            :field => field.to_s,
+            :messages => error_messages.map(&:to_s) # cast the messages to a string, because in Rails 6.1+ this is a ActiveModel::DeprecationHandlingMessageArray
+          }
+        end
       end
 
       # TODO: Assignment Branch Condition size for _protobuf_field_objects is too high. [<1, 19, 7> 20.27/17]
