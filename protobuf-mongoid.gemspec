@@ -20,7 +20,7 @@ Gem::Specification.new do |spec|
   #
   spec.add_dependency 'google-protobuf', '~> 4.30.0'
   spec.add_dependency 'heredity', '~> 0.1.2'
-  spec.add_dependency 'mongoid', '~> 9.0.0'
+  spec.add_dependency 'mongoid', '~> 9.1.0'
   spec.add_dependency 'protobuf', '~> 3.10.0'
   spec.add_dependency 'securerandom', '~> 0.4.1'
 
