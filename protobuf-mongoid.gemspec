@@ -32,7 +32,7 @@ Gem::Specification.new do |spec|
   ##
   # Development dependencies
   #
-  spec.add_development_dependency 'pry', '~> 0.15.0'
+  spec.add_development_dependency 'pry', '~> 0.16.0'
   spec.add_development_dependency 'rspec', '~> 3.0'
   spec.add_development_dependency 'timecop', '~> 0.9.0'
 end
